@@ -1,0 +1,318 @@
+---
+import "../styles/global.css";
+
+import Hero from "../components/Hero";
+import IntroReveal from "../components/IntroReveal";
+import StickyPanel from "../components/StickyPanel";
+import ScrollNav from "../components/ScrollNav";
+import PretextBody from "../components/PretextBody";
+
+import {
+  profile,
+  skills,
+  experience,
+  projects,
+  education,
+  certification,
+  SECTION_ORDER,
+} from "../data/resume";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ollantay Z. Scocos — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer portfolio for Ollantay Z. Scocos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <IntroReveal client:only="react" />
+    <main class="min-h-screen overflow-x-clip bg-[var(--marble)] px-5 py-5 pb-24 md:px-10 md:pb-5">
+      <div class="content-layer">
+        <ScrollNav client:load />
+
+        <nav
+          class="mb-24 flex items-center justify-between border-b border-[var(--line)] pb-5 text-sm uppercase tracking-wide"
+          aria-label="Primary navigation"
+        >
+          <a href="/" class="font-semibold">hello!</a>
+          <div class="flex gap-6 text-[var(--olive)]">
+            <a href="#work">Work</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+
+        <Hero client:only="react" />
+
+        <div class="my-24 border-t border-[var(--line)]"></div>
+
+        <div class="md:grid md:grid-cols-12 md:gap-5">
+
+          <div class="hidden md:block md:col-span-3">
+            <div class="sticky top-20 pt-8">
+              <StickyPanel
+                client:visible
+                sections={[...SECTION_ORDER]}
+              />
+            </div>
+          </div>
+
+          <div class="overflow-x-clip md:col-span-9">
+
+            <section
+              id="profile"
+              class="border-t border-[var(--line)] pt-8"
+              aria-labelledby="profile-heading"
+            >
+              <p id="profile-heading" class="section-label">Profile</p>
+              <div class="max-w-4xl text-base leading-relaxed text-[var(--ink)] md:text-xl">
+                <PretextBody
+                  client:visible
+                  text={profile.summary}
+                  font="22px Inter, system-ui, sans-serif"
+                  lineHeight={36}
+                />
+              </div>
+            </section>
+
+            <section
+              id="skills"
+              class="mt-14 border-t border-[var(--line)] pt-8"
+              aria-labelledby="skills-heading"
+            >
+              <p id="skills-heading" class="section-label">Skills</p>
+              <div class="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span class="rounded-full border border-[var(--line)] bg-[var(--marble)] px-3 py-1 text-sm text-[var(--olive)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </section>
+
+            <section
+              id="experience"
+              class="mt-14 border-t border-[var(--line)] pt-8"
+              aria-labelledby="experience-heading"
+            >
+              <p id="experience-heading" class="section-label">Experience</p>
+              {experience.map((job) => (
+                <article class="border-t border-[var(--line)] py-8 first:border-t-0 first:pt-0">
+                  <div class="mb-6 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                    <h2 class="font-display text-3xl leading-none md:text-5xl lg:text-6xl">
+                      {job.role}
+                    </h2>
+                    <p class="font-mono text-xs uppercase tracking-wide text-[var(--olive)]">
+                      {job.link
+                        ? <a href={job.link} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--aegean)]">{job.company}</a>
+                        : job.company
+                      }
+                      {" · "}{job.date}
+                    </p>
+                  </div>
+                  <div class="grid gap-4">
+                    {job.points.map((point) => (
+                      <PretextBody
+                        client:visible
+                        text={point}
+                        font="18px Inter, system-ui, sans-serif"
+                        lineHeight={30}
+                        className="max-w-3xl text-sm leading-relaxed text-[var(--olive)] md:text-lg"
+                      />
+                    ))}
+                  </div>
+                  {job.videoUrl && (
+                    <a
+                      href={job.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-spectral mt-4 inline-flex items-center gap-1.5 text-xs uppercase tracking-wide text-[var(--olive)] hover:text-[var(--aegean)]"
+                    >
+                      <span aria-hidden>▶</span> Watch demo
+                    </a>
+                  )}
+                </article>
+              ))}
+            </section>
+
+            <section
+              id="work"
+              class="mt-14 border-t border-[var(--line)] pt-8"
+              aria-labelledby="work-heading"
+            >
+              <p id="work-heading" class="section-label">Selected Work</p>
+              <div class="grid gap-12">
+                {projects.map((project) => (
+                  <article>
+                    <div class="mb-2 flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
+                      <h2 class="font-display text-2xl leading-none md:text-4xl lg:text-5xl">
+                        {project.title}
+                      </h2>
+                      <p class="font-mono text-xs uppercase tracking-wide text-[var(--olive)]">
+                        {project.type}
+                      </p>
+                    </div>
+
+                    <PretextBody
+                      client:visible
+                      text={project.description}
+                      font="18px Inter, system-ui, sans-serif"
+                      lineHeight={30}
+                      className="mt-3 max-w-3xl text-lg leading-relaxed text-[var(--olive)]"
+                    />
+
+                    <div class="mt-3 flex flex-col gap-3 md:flex-row md:items-start md:justify-between md:gap-6">
+                      {project.bullets && project.bullets.length > 0 && (
+                        <ul class="min-w-0 space-y-1 pl-4">
+                          {project.bullets.map((b) => (
+                            <li class="list-disc text-sm leading-relaxed text-[var(--olive)]">
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {(project.link || project.videoUrl) && (
+                        <div class="flex flex-row gap-4 md:shrink-0 md:flex-col md:items-end md:gap-3">
+                          {project.link && (
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="font-spectral inline-flex items-center gap-1.5 text-xs uppercase tracking-wide text-[var(--olive)] hover:text-[var(--aegean)]"
+                            >
+                              <span aria-hidden>→</span> GitHub
+                            </a>
+                          )}
+                          {project.videoUrl && (
+                            <a
+                              href={project.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="font-spectral inline-flex items-center gap-1.5 text-xs uppercase tracking-wide text-[var(--olive)] hover:text-[var(--aegean)]"
+                            >
+                              <span aria-hidden>▶</span> Demo
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section
+              id="education"
+              class="mt-14 border-t border-[var(--line)] pt-8"
+              aria-labelledby="education-heading"
+            >
+              <p id="education-heading" class="section-label">Education</p>
+
+              <h2 class="font-display text-3xl leading-none md:text-5xl lg:text-6xl">
+                {education.school}
+              </h2>
+
+              <p class="mt-3 font-mono text-xs uppercase tracking-wide text-[var(--olive)]">
+                {education.degree} · {education.date}
+              </p>
+
+              {education.deansListTerms && (
+                <p class="font-spectral mt-4 text-sm italic text-[var(--olive)]">
+                  Dean's List — {education.deansListTerms}
+                </p>
+              )}
+
+              {education.coursework && education.coursework.length > 0 && (
+                <div class="mt-6">
+                  <p class="font-spectral mb-2 text-xs uppercase tracking-wide text-[var(--olive)]">
+                    Notable Coursework
+                  </p>
+                  <ul class="grid gap-1 md:grid-cols-2">
+                    {education.coursework.map((course) => (
+                      <li class="list-disc ml-4 text-sm leading-relaxed text-[var(--olive)]">
+                        {course}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+
+            <section
+              id="certifications"
+              class="mt-14 border-t border-[var(--line)] pt-8"
+              aria-labelledby="certifications-heading"
+            >
+              <p id="certifications-heading" class="section-label">Certifications</p>
+
+              <h2 class="font-display text-3xl leading-none md:text-5xl lg:text-6xl">
+                {certification.name}
+              </h2>
+
+              <p class="mt-3 font-mono text-xs uppercase tracking-wide text-[var(--olive)]">
+                {certification.date}
+              </p>
+
+              {certification.videoUrl && (
+                <a
+                  href={certification.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-spectral mt-4 inline-flex items-center gap-1.5 text-xs uppercase tracking-wide text-[var(--olive)] hover:text-[var(--aegean)]"
+                >
+                  <span aria-hidden>▶</span> Watch demo
+                </a>
+              )}
+            </section>
+
+            <section
+              id="contact"
+              class="mt-14 border-t border-[var(--line)] py-12"
+              aria-labelledby="contact-heading"
+            >
+              <p id="contact-heading" class="section-label">Contact</p>
+              <h2 class="font-display text-4xl leading-none md:text-6xl lg:text-8xl">
+                Lets connect
+              </h2>
+              <PretextBody
+                client:visible
+                text={`${profile.email} · ${profile.phone} · ${profile.site} · ${profile.github}`}
+                font="18px Inter, system-ui, sans-serif"
+                lineHeight={30}
+                className="mt-6 max-w-3xl text-sm leading-relaxed text-[var(--olive)] md:text-lg"
+              />
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center gap-8 border-t border-[var(--line)] bg-[var(--marble)] px-6 py-3 md:hidden">
+      <a href="https://linkedin.com/in/ollantay-scocos" target="_blank" rel="noopener noreferrer">
+        <img src="/InBug-Black%20(1).svg" alt="LinkedIn" class="h-7 w-auto" />
+      </a>
+      <a href={`https://${profile.github}`} target="_blank" rel="noopener noreferrer">
+        <img src="/github-mark.svg" alt="GitHub" class="h-7 w-auto" />
+      </a>
+      <a href={`mailto:${profile.email}`}>
+        <img src="/gmail-icon.svg" alt="Email" class="h-7 w-auto" />
+      </a>
+    </div>
+  </body>
+</html>
