@@ -72,7 +72,7 @@ export const projects: Project[] = [
   {
     title: "MuseShare",
     type: "TypeScript · React Native / Expo · Firebase · Firestore · REST APIs",
-    videoUrl: "#",
+    videoUrl: "https://youtube.com/shorts/lvSJJz3Ow50?feature=share",
     description:
       "Full-stack React Native music-sharing app with messaging, profiles, social flows, Firebase workflows, and a machine-learning-backed cellular automata visual identity system",
     bullets: [
