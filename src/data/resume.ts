@@ -50,11 +50,12 @@ export const experience: ExperienceEntry[] = [
     date: "Jan 2024 — Present",
     link: "https://www.dataannotation.tech",
     points: [
-      "· Engineered 500+ Docker containers to run and validate code, boosting AI reliability and deliverable coding performance by as much as 250%",
-      "· Audited and tested 10,000+ files across complex repositories, improving stakeholder-critical output fidelity by 18%",
-      "· Automated machine learning unit-test tooling on Linux/WSL, reducing manual QA effort by 20%",
-      "· Architected 100+ codebases across Python, C++, TypeScript, backend, and database layers for extensive LLM evaluation",
-      "· Built CI/CD testing workflows that cut validation failures by 35% and improved early defect detection",
+      "· Develop Python and JavaScript/TypeScript testing infrastructure to validate LLM-generated implementations through automated unit tests, integration tests, and behavioral checks",
+      "· Build and debug Docker environments, managing dependencies, reproducing application states, and isolating execution failures across codebases",
+      "· Independently design and build software engineering evaluations, creating original applications, repositories, and coding challenges to assess LLM capabilities",
+      "· Review, execute, and debug AI-generated code, resolving build failures, runtime errors, and incorrect behavior across multi-file repositories",
+      "· Created reusable validation tools to standardize evaluation results, reproduce defects, and reduce repetitive manual testing",
+      "· Evaluate model reasoning, code quality, and instruction adherence through RLHF, providing technical feedback and corrected implementations",
     ],
   },
 ];
@@ -72,14 +73,26 @@ export const projects: Project[] = [
   {
     title: "MuseShare",
     type: "TypeScript · React Native / Expo · Firebase · Firestore · REST APIs",
-    videoUrl: "https://youtu.be/HwY4YCysQn8",
+    videoUrl: "https://apps.apple.com/us/app/museshare/id6784826862",
     description:
       "Full-stack React Native music-sharing app with messaging, profiles, social flows, Firebase workflows, and a machine-learning-backed cellular automata visual identity system",
     bullets: [
-      "Developed a full-stack React Native/Expo music-sharing app with direct messaging, profiles, and social media flows",
-      "Engineered a persistent cellular automata visual identity system with a machine learning layer, evolving personalized 64x64 album-palette images that reflect each user’s music activity and style",
-      "Integrated music metadata APIs with Firebase workflows and TypeScript caching, reducing redundant network/database calls and improving repeated-share latency by 50%+",
-      "Architected scalable Firestore data models and access patterns to support fast client-side queries"
+      "Engineered and released a full-stack music-sharing app with messaging, live notifications, user profiles, music integrations, and iOS sharing extensions",
+      "Trained and tuned a neural cellular automata (NCA) model that evolves persistent visual identities from music activity, adding decay, stability controls, and color correction",
+      "Integrated Metal-accelerated on-device inference, compressing and persisting 96×96×16 NCA states in Firestore to enable continuous evolution across user interactions",
+      "Designed a simulation-driven rendering system using NCA-derived topology, ray-marched volumetric clouds, flow fields, and Boids-based particle simulation"
+    ],
+  },
+  {
+    title: "ChirpTrace",
+    type: "React Native · Expo · TypeScript, ONNX Runtime",
+    link: "https://apps.apple.com/us/app/chirptrace/id6822016979",
+    description:
+      "Bird neural net identifier and visualizer with local phone inference",
+    bullets: [
+      "Built a mobile audio-analysis app combining real-time spectral visualization with on-device BirdNET classification",
+      "Utilized BirdNET and YAMNet through ONNX Runtime, supporting concurrent model inference with responsive performancen",
+      "Implemented premium feature gating for YAMNet-based wildlife and environmental sound detection, unlocked through in-app purchases",
     ],
   },
   {
